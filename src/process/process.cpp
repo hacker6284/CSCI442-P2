@@ -10,19 +10,24 @@ using namespace std;
 
 
 Process* Process::read_from_input(std::istream& in) {
-  // TODO: implement me
-  return nullptr;
+  vector<Page *> new_pages;
+  int num_bytes = 0;
+
+  while (!in.eof()){
+    new_pages.push_back(Page::read_from_input(in));
+    num_bytes += in.gcount();
+  }
+  return new Process(num_bytes, new_pages);
 }
 
 
 size_t Process::size() const {
-  // TODO: implement me
-  return 0;
+  return num_bytes;
 }
 
 
 bool Process::is_valid_page(size_t index) const {
-  // TODO: implement me
+  if (index < pages.size()) return true;
   return false;
 }
 
