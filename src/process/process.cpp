@@ -33,12 +33,13 @@ bool Process::is_valid_page(size_t index) const {
 
 
 size_t Process::get_rss() const {
-  // TODO: implement me
-  return 0;
+  return page_table.get_present_page_count();
 }
 
 
 double Process::get_fault_percent() const {
-  // TODO: implement me
-  return 0.0;
+  if (!memory_accesses){
+    return 0;
+  }
+  return 100 * double(page_faults) / double(memory_accesses);
 }
