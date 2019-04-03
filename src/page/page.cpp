@@ -14,24 +14,34 @@ const size_t Page::PAGE_SIZE;
 
 
 Page* Page::read_from_input(std::istream& in) {
-  // TODO: implement me
-  return nullptr;
+  char *bytestream = new char [PAGE_SIZE];
+
+  in.read(bytestream, PAGE_SIZE);
+
+  int count = in.gcount();
+
+  if (count == 0) return NULL;
+
+  vector<char> new_bytes;
+
+  for (int i = 0; i < count; i++){
+    new_bytes.push_back(bytestream[i]);
+  }
+  return new Page(new_bytes);
 }
 
 
 size_t Page::size() const {
-  // TODO: implement me
-  return 0;
+  return bytes.size();
 }
 
 
 bool Page::is_valid_offset(size_t offset) const {
-  // TODO: implement me
+  if (bytes.size() > 0 && offset < bytes.size()) return true;
   return false;
 }
 
 
 char Page::get_byte_at_offset(size_t offset) {
-  // TODO: implement me
-  return 0;
+  return bytes.at(offset);
 }
