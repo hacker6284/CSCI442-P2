@@ -31,6 +31,94 @@ void print_usage() {
 
 
 bool parse_flags(int argc, char** argv, FlagOptions& flags) {
-  // TODO: implement me
+  bool found_filename = false;
+  //Check flags
+
+  for (size_t i = 1; i < argc; i++){
+    if (argv[i][0] == '-'){
+      if (argv[i][1] == '-'){
+        //double dash
+        if (strcmp(argv[i], "--verbose") == 0){
+          flags.verbose = true;
+        } else if (strcmp(argv[i], "--help") == 0){
+          print_usage();
+          return true;
+        } else if (strcmp(argv[i], "--strategy") == 0){
+          if (argc > i + 1){
+            if (strcmp(argv[i + 1], "LRU") == 0){
+              flags.strategy = ReplacementStrategy::LRU;
+            } else if (strcmp(argv[i + 1], "FIFO") == 0){
+              flags.strategy = ReplacementStrategy::FIFO;
+            } else {
+              cout << "Unknown strategy: " << argv[i+1] << endl;
+              return false;
+            }
+            i++;
+          } else {
+            cout << "Incorrect number of arguments 0" << endl;
+            return false;
+          }
+        } else if (strcmp(argv[i], "--max-frames") == 0){
+          if (argc > i + 1){
+            flags.max_frames = int(*(argv[i + 1]));
+            i++;
+          } else {
+            cout << "Incorrect number of arguments 1" << endl;
+            return false;
+          }
+        }
+      } else {
+        //single dash
+        bool frames_flag = false;
+        bool strategy_flag = false;
+        for (size_t j = 1; j < strlen(argv[i]); j++){
+          if (argv[i][j] == 'v'){
+            flags.verbose = true;
+          } else if (argv[i][j] == 'h'){
+            print_usage();
+            return true;
+          } else if (argv[i][j] == 's'){
+            strategy_flag = true;
+            if (!frames_flag){
+              if (strcmp(argv[i + 1], "LRU") == 0){
+                flags.strategy = ReplacementStrategy::LRU;
+              } else if (strcmp(argv[i + 1], "FIFO") == 0){
+                flags.strategy = ReplacementStrategy::FIFO;
+              } else {
+                cout << "Unknown strategy: " << argv[i+1] << endl;
+                return false;
+              }
+            } else {
+              cout << "Can't have f and s frames together" << endl;
+              return false;
+            }
+          } else if (argv[i][j] == 'f'){
+            frames_flag = true;
+            if (!strategy_flag){
+              if ((sizeof(argv) / sizeof(char*)) > i + 1){
+                flags.max_frames = int(*(argv[i + 1]));
+              } else {
+                cout << "Incorrect number of arguments 2" << endl;
+                return false;
+              }
+            } else {
+              cout << "Incorrect number of arguments 3" << endl;
+              return false;
+            }
+          } else {
+            cout << "Can't have f and s frames together" << endl;
+            return false;
+          }
+        }
+        if (strategy_flag || frames_flag){
+          i++;
+        }
+      }
+    } else {
+      flags.filename = argv[i];
+      found_filename = true;
+    }
+  }
+  if (found_filename) return true;
   return false;
 }
