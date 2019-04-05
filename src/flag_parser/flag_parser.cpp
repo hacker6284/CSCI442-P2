@@ -9,6 +9,11 @@
 
 using namespace std;
 
+bool isNum(std::string line){
+    char* p;
+    strtol(line.c_str(), &p, 10);
+    return *p == 0;
+}
 
 void print_usage() {
   cout <<
@@ -60,7 +65,17 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
           }
         } else if (strcmp(argv[i], "--max-frames") == 0){
           if (argc > i + 1){
-            flags.max_frames = int(*(argv[i + 1]));
+            if (isNum(string(argv[i + 1]))){
+              int num = stoi(argv[i + 1]);
+              if (num > 0) {
+                flags.max_frames = num;
+                cout << num << endl;
+              } else {
+                return false;
+              }
+            } else {
+              return false;
+            }
             i++;
           } else {
             cout << "Incorrect number of arguments 1" << endl;
@@ -95,8 +110,16 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
           } else if (argv[i][j] == 'f'){
             frames_flag = true;
             if (!strategy_flag){
-              if ((sizeof(argv) / sizeof(char*)) > i + 1){
-                flags.max_frames = int(*(argv[i + 1]));
+              if (argc > i + 1){
+                if (isNum(string(argv[i + 1]))){
+                  int num = stoi(argv[i + 1]);
+                  if (num > 0) {
+                    flags.max_frames = num;
+                    cout << num << endl;
+                  } else {
+                    return false;
+                  }
+                }
               } else {
                 cout << "Incorrect number of arguments 2" << endl;
                 return false;
@@ -119,6 +142,5 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
       found_filename = true;
     }
   }
-  if (found_filename) return true;
-  return false;
+  return (found_filename);
 }

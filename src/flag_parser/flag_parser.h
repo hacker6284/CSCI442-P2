@@ -57,3 +57,5 @@ void print_usage();
  * -h flag is detected, instructions are printed and the program exists instead.
  */
 bool parse_flags(int argc, char** argv, FlagOptions& flags);
+
+bool isParam(std::string line);
