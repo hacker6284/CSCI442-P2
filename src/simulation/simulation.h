@@ -31,6 +31,11 @@ public:
    */
   void run();
 
+  /**
+  * Initialize the simulation
+  */
+  void init(std::istream& in);
+
 // PRIVATE METHODS
 private:
 

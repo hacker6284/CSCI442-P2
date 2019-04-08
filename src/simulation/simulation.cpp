@@ -14,6 +14,22 @@ void Simulation::run() {
   // TODO: implement me
 }
 
+void Simulation::init(std::istream& in) {
+  // Set up all the data in the simulation
+  int num_processes;
+  int process_id;
+  string process_file;
+
+  in >> numProcesses;
+
+  for (int i = 0; i < num_processes; i++){
+    in >> process_id;
+    in >> process_file;
+
+    
+  }
+}
+
 
 char Simulation::perform_memory_access(const VirtualAddress& address) {
   // TODO: implement me

@@ -5,6 +5,7 @@
  */
 
 #include <cstdlib>
+#include <fstream>
 
 using namespace std;
 
@@ -13,6 +14,8 @@ using namespace std;
  * The main entry point to the simulation.
  */
 int main(int argc, char** argv) {
-  // TODO: implement me
+  //initialize input file
+  fstream in ("inputs/sim_1", fstream::in);
+
   return EXIT_SUCCESS;
 }
