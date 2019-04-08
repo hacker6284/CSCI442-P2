@@ -9,6 +9,9 @@
 
 using namespace std;
 
+Simulation::Simulation(){
+  //constructor
+}
 
 void Simulation::run() {
   // TODO: implement me
@@ -20,13 +23,13 @@ void Simulation::init(std::istream& in) {
   int process_id;
   string process_file;
 
-  in >> numProcesses;
+  in >> num_processes;
 
   for (int i = 0; i < num_processes; i++){
     in >> process_id;
     in >> process_file;
 
-    
+
   }
 }
 

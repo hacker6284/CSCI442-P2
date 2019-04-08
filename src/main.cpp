@@ -6,6 +6,7 @@
 
 #include <cstdlib>
 #include <fstream>
+#include "simulation/simulation.h"
 
 using namespace std;
 
@@ -17,7 +18,16 @@ int main(int argc, char** argv) {
   //initialize input file
   fstream in ("inputs/sim_1", fstream::in);
 
+  //create the simulation
+  Simulation sim = Simulation();
 
+  //initialize the simulation with file stream
+  sim.init(in);
+
+  //run the simulation
+  sim.run();
+
+  //close the file stream
   in.close();
   return EXIT_SUCCESS;
 }

@@ -26,6 +26,8 @@ public:
 // PUBLIC API METHODS
 public:
 
+  Simulation();
+
   /**
    * Runs the simulation.
    */
