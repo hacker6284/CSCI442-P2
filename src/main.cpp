@@ -17,5 +17,7 @@ int main(int argc, char** argv) {
   //initialize input file
   fstream in ("inputs/sim_1", fstream::in);
 
+
+  in.close();
   return EXIT_SUCCESS;
 }
