@@ -18,7 +18,7 @@ Simulation::Simulation(){
 void Simulation::run() {
 
   for (auto p: process_table){
-    cout << "Process " << p.first << " size: " << p.second->size() << endl;
+    cout << "Process " << p.first << ": " << p.second->size()  << " bytes"<< endl;
   }
 
   while (!addresses.empty()){
