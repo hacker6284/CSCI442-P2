@@ -6,7 +6,9 @@
 
 #include <cstdlib>
 #include <fstream>
+#include <iostream>
 #include "simulation/simulation.h"
+#include "flag_parser/flag_parser.h"
 
 using namespace std;
 
@@ -15,8 +17,15 @@ using namespace std;
  * The main entry point to the simulation.
  */
 int main(int argc, char** argv) {
+  //parse flags
+  FlagOptions options;
+  if (!parse_flags(argc, argv, options)){
+    cerr << "Flag parsing failed" << endl;
+    exit(1);
+  }
+
   //initialize input file
-  fstream in ("inputs/sim_1", fstream::in);
+  fstream in (options.filename, fstream::in);
 
   //create the simulation
   Simulation sim = Simulation();

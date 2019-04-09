@@ -47,7 +47,7 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
           flags.verbose = true;
         } else if (strcmp(argv[i], "--help") == 0){
           print_usage();
-          return true;
+          exit(0);
         } else if (strcmp(argv[i], "--strategy") == 0){
           if (argc > i + 1){
             if (strcmp(argv[i + 1], "LRU") == 0){
@@ -91,7 +91,7 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
             flags.verbose = true;
           } else if (argv[i][j] == 'h'){
             print_usage();
-            return true;
+            exit(0);
           } else if (argv[i][j] == 's'){
             strategy_flag = true;
             if (!frames_flag){

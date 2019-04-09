@@ -9,6 +9,8 @@
 #include "process/process.h"
 #include "virtual_address/virtual_address.h"
 #include <cstdlib>
+#include <queue>
+#include <map>
 
 
 /**
@@ -57,4 +59,6 @@ private:
 // INSTANCE VARIABLES
 private:
 
+  std::queue<VirtualAddress> addresses;
+  std::map<int, Process *> process_table;
 };
