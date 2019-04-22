@@ -39,7 +39,7 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
   bool found_filename = false;
   //Check flags
 
-  for (size_t i = 1; i < argc; i++){
+  for (int i = 1; i < argc; i++){
     if (argv[i][0] == '-'){
       if (argv[i][1] == '-'){
         //double dash
@@ -86,7 +86,7 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
         //single dash
         bool frames_flag = false;
         bool strategy_flag = false;
-        for (size_t j = 1; j < strlen(argv[i]); j++){
+        for (int j = 1; j < strlen(argv[i]); j++){
           if (argv[i][j] == 'v'){
             flags.verbose = true;
           } else if (argv[i][j] == 'h'){

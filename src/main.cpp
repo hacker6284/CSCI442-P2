@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
   FlagOptions options;
   if (!parse_flags(argc, argv, options)){
     cerr << "Flag parsing failed" << endl;
-    exit(1);
+    return EXIT_FAILURE;
   }
 
   //initialize input file

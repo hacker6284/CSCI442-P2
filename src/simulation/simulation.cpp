@@ -8,6 +8,7 @@
 #include "simulation/simulation.h"
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 using namespace std;
 
@@ -17,10 +18,12 @@ Simulation::Simulation(){
 
 void Simulation::run() {
 
+  // print all of the processes in the process table
   for (auto p: process_table){
     cout << "Process " << p.first << ": " << p.second->size()  << " bytes"<< endl;
   }
 
+  // print each virtual address in the queue
   while (!addresses.empty()){
     cout << "Address: " << addresses.front() << endl;
     addresses.pop();
