@@ -48,10 +48,12 @@ void Simulation::init(std::istream& in) {
   int process_id;
   string virtual_address;
   while (!in.eof()){
+    process_id = -1;
     in >> process_id;
     in >> virtual_address;
-
-    addresses.push(VirtualAddress::from_string(process_id, virtual_address));
+    if (process_id != -1){
+      addresses.push(VirtualAddress::from_string(process_id, virtual_address));
+    }
   }
 }
 
