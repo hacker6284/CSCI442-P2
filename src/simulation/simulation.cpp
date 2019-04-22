@@ -8,7 +8,6 @@
 #include "simulation/simulation.h"
 #include <iostream>
 #include <fstream>
-#include <cstring>
 
 using namespace std;
 
