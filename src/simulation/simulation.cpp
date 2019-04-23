@@ -11,7 +11,8 @@
 
 using namespace std;
 
-Simulation::Simulation(){
+Simulation::Simulation(FlagOptions& options){
+  this->options = options;
   //constructor
 }
 
@@ -24,8 +25,21 @@ void Simulation::run() {
 
   // print each virtual address in the queue
   while (!addresses.empty()){
-    cout << "Address: " << addresses.front() << endl;
+    //try to perform memory access
+
+    //check that memory address exists
+    VirtualAddress address = addresses.front();
+    if (!process_table[address.process_id]->is_valid_page(address.page)){
+      cerr << "Segmentation Fault" << endl;
+      exit(11);
+    }
+
+    //perform the memory access
+    perform_memory_access(address);
+
+
     addresses.pop();
+    time++;
   }
 }
 
@@ -59,8 +73,20 @@ void Simulation::init(std::istream& in) {
 
 
 char Simulation::perform_memory_access(const VirtualAddress& address) {
-  // TODO: implement me
-  return 0;
+  //see if the address is already in virtual memory
+  Process *process = process_table[address.process_id];
+  if (process->page_table.rows.at(address.page).present){
+    process->page_table.rows.at(address.page).access_time = this->time;
+  } else {
+    handle_page_fault(process, address.page);
+  }
+
+
+  if (process->pages.at(address.page)->is_valid_offset(address.offset)){
+    return process->pages.at(address.page)->get_byte_at_offset(address.offset);
+  } else {
+    return 0;
+  }
 }
 
 

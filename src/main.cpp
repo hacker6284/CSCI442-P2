@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
   fstream in (options.filename, fstream::in);
 
   //create the simulation
-  Simulation sim = Simulation();
+  Simulation sim = Simulation(options);
 
   //initialize the simulation with file stream
   sim.init(in);

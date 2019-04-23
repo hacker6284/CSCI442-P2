@@ -7,7 +7,9 @@
 
 #pragma once
 #include "process/process.h"
+#include "frame/frame.h"
 #include "virtual_address/virtual_address.h"
+#include "flag_parser/flag_parser.h"
 #include <cstdlib>
 #include <queue>
 #include <map>
@@ -28,7 +30,7 @@ public:
 // PUBLIC API METHODS
 public:
 
-  Simulation();
+  Simulation(FlagOptions& options);
 
   /**
    * Runs the simulation.
@@ -61,4 +63,8 @@ private:
 
   std::queue<VirtualAddress> addresses;
   std::map<int, Process *> process_table;
+  std::map<Process *, int> frame_table;
+  std::vector<Frame> frames;
+  FlagOptions options;
+  int time = 0;
 };
