@@ -28,6 +28,7 @@ Nothing to speak of
 Using the input file *sim_belady* from the inputs folder, you can see Belady's anomaly in action by running the following two commands:
 
 `./mem-sim -v -f 3 inputs/sim_belady`
+
 `./mem-sim -v -f 4 inputs/sim_belady`
 
 You can see that running the simulation with a smaller number of frames will, in this case, lead to an increased number of page faults. This occurs because certain pages are accessed more often than other pages, and changing the time that the first swap occurs also changes which pages are chosen to be swapped. If a page which is accessed more frequently is unluckily chosen to be swapped because of an additional free frame at the beginning, the overall number of page faults will increase.
