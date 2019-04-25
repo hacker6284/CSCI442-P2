@@ -69,7 +69,6 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
               int num = stoi(argv[i + 1]);
               if (num > 0) {
                 flags.max_frames = num;
-                cout << num << endl;
               } else {
                 return false;
               }
@@ -115,7 +114,6 @@ bool parse_flags(int argc, char** argv, FlagOptions& flags) {
                   int num = stoi(argv[i + 1]);
                   if (num > 0) {
                     flags.max_frames = num;
-                    cout << num << endl;
                   } else {
                     return false;
                   }
