@@ -19,7 +19,7 @@ Nothing to speak of
 
 ## Approximate Time Spent on Project:
 
-**40 Hours**
+**20 Hours**
 
 ## Belady's Anomaly
 
