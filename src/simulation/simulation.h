@@ -13,6 +13,7 @@
 #include "flag_parser/flag_parser.h"
 #include <cstdlib>
 #include <queue>
+#include <string>
 #include <map>
 
 
@@ -67,4 +68,6 @@ private:
   std::vector<Frame> frames;
   FlagOptions options;
   int time = 0;
+
+  std::string message = "";
 };

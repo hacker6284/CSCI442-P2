@@ -32,7 +32,7 @@ void Simulation::run() {
       cout << address << endl;
     }
     //perform the memory access
-    perform_memory_access(address);
+    message += perform_memory_access(address);
 
     addresses.pop();
     time++;
@@ -62,6 +62,8 @@ void Simulation::run() {
   cout << "Total memory accesses: " << setw(15) << right << total_mem_accesses << endl;
   cout << "Total page faults: " << setw(19) << right << total_page_faults << endl;
   cout << "Free frames remaining: " << setw(15) << right << free_frames_remaining << endl;
+
+  cout << "Message: " << message << endl;
 
 }
 
